@@ -18,6 +18,8 @@
         "App\\": "app/",
         "Core\\": "core/"
       }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
     }
-  }
-  
+}
