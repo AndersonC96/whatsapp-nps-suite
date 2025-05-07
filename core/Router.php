@@ -2,7 +2,10 @@
     namespace Core;
     class Router {
         public function dispatch() {
-            $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            // Captura a URI e remove a pasta do projeto
+            $basePath = '/whatsapp-nps-suite/public'; // ajuste conforme o nome da sua pasta
+            $uri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);
+            $uri = parse_url($uri, PHP_URL_PATH);
             $uri = trim($uri, '/');
             $segments = explode('/', $uri);
             $controllerName = !empty($segments[0]) ? ucfirst($segments[0]) . 'Controller' : 'HomeController';
