@@ -2,3 +2,4 @@ project.txt
 .env
 vendor/
 node_modules/
+structure.lua
