@@ -4,7 +4,7 @@
     use Core\Env;
     use Core\Router;
     // Carrega as variáveis do arquivo .env
-    Env::load(__DIR__ . '/../.env');
+    Env::load(__DIR__ . '.env');
     // Define o timezone
     date_default_timezone_set($_ENV['APP_TIMEZONE'] ?? 'UTC');
     // Exibe erros se APP_DEBUG estiver true
