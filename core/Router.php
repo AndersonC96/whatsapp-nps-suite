@@ -3,8 +3,10 @@
     class Router {
         public function dispatch() {
             // Captura a URI e remove a pasta do projeto
-            $basePath = '/whatsapp-nps-suite/public'; // ajuste conforme o nome da sua pasta
-            $uri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);
+            /*$basePath = '/whatsapp-nps-suite/public'; // ajuste conforme o nome da sua pasta
+            $uri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);*/
+            $scriptName = dirname($_SERVER['SCRIPT_NAME']);
+            $uri = str_replace($scriptName, '', $_SERVER['REQUEST_URI']);
             $uri = parse_url($uri, PHP_URL_PATH);
             $uri = trim($uri, '/');
             $segments = explode('/', $uri);
