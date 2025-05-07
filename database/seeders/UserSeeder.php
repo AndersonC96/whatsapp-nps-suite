@@ -14,8 +14,8 @@
                 'admin',
                 true
             ]);
-            echo "Usuário admin criado.\n";
+            echo "Usuário admin criado.";
         } else {
-            echo "Usuário admin já existe. Pulando seeder.\n";
+            echo "Usuário admin já existe. Pulando seeder.";
         }
     };
