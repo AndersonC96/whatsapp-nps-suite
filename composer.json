@@ -5,6 +5,7 @@
         "nesbot/carbon": "^3.9",
         "illuminate/database": "^12.13",
         "ext-json": "*",
-        "firebase/php-jwt": "^6.11"
+        "firebase/php-jwt": "^6.11",
+        "robthree/twofactorauth": "^3.0"
     }
 }
