@@ -10,6 +10,7 @@
         "symfony/http-foundation": "^7.2",
         "dompdf/dompdf": "^3.1",
         "league/csv": "^9.23",
-        "guzzlehttp/guzzle": "^7.9"
+        "guzzlehttp/guzzle": "^7.9",
+        "phpmailer/phpmailer": "^6.10"
     }
 }
