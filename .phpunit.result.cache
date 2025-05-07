@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"ControllerTest::testViewRendersCorrectly":0.321,"EnvTest::testEnvLoadsVariable":0.031,"RouterTest::testRouterLoadsDefaultController":0.002}}
