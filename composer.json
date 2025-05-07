@@ -4,6 +4,7 @@
         "symfony/var-dumper": "^7.2",
         "nesbot/carbon": "^3.9",
         "illuminate/database": "^12.13",
-        "ext-json": "*"
+        "ext-json": "*",
+        "firebase/php-jwt": "^6.11"
     }
 }
