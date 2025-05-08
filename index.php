@@ -1,13 +1,13 @@
 <?php
-    // Carrega o autoload do Composer
-    require_once __DIR__ . '/../vendor/autoload.php';
-    use Core\Env;
-    use Core\Router;
-    // Carrega as variáveis do arquivo .env
-    Env::load(__DIR__ . '/../.env');
-    // Define o timezone
+    require_once __DIR__ . '/vendor/autoload.php';
+    use Core\\Env;
+    use Core\\Router;
+    session_start();
+    // Carrega variáveis de ambiente
+    Env::load(__DIR__ . '/.env');
+    // Define timezone
     date_default_timezone_set($_ENV['APP_TIMEZONE'] ?? 'UTC');
-    // Exibe erros se APP_DEBUG estiver true
+    // Define exibição de erros com base no APP_DEBUG
     if ($_ENV['APP_DEBUG'] === 'true') {
         ini_set('display_errors', 1);
         error_reporting(E_ALL);
@@ -15,6 +15,6 @@
         ini_set('display_errors', 0);
         error_reporting(0);
     }
-    // Instancia e despacha o roteador
+    // Roteia
     $router = new Router();
     $router->dispatch();
