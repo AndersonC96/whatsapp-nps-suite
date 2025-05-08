@@ -2,9 +2,7 @@
     namespace Core;
     class Router {
         public function dispatch() {
-            // Captura a URI e remove a pasta do projeto
-            /*$basePath = '/whatsapp-nps-suite/public'; // ajuste conforme o nome da sua pasta
-            $uri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);*/
+            // Captura a URI corretamente, mesmo em subpastas como /whatsapp-nps-suite/public
             $scriptName = dirname($_SERVER['SCRIPT_NAME']);
             $uri = str_replace($scriptName, '', $_SERVER['REQUEST_URI']);
             $uri = parse_url($uri, PHP_URL_PATH);
@@ -19,11 +17,11 @@
                     call_user_func_array([$controller, $method], array_slice($segments, 2));
                 } else {
                     http_response_code(404);
-                    echo "Método $method não encontrado.";
+                    echo "Método '$method' não encontrado em $controllerName.";
                 }
             } else {
                 http_response_code(404);
-                echo "Controller $controllerName não encontrado.";
+                echo "Controller '$controllerName' não encontrado.";
             }
         }
     }
