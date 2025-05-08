@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"ControllerTest::testViewRendersCorrectly":0.321,"EnvTest::testEnvLoadsVariable":0.031,"RouterTest::testRouterLoadsDefaultController":0.002}}
+{"version":1,"defects":[],"times":{"ControllerTest::testViewRendersCorrectly":0.924,"EnvTest::testEnvLoadsVariable":0.075,"RouterTest::testRouterLoadsDefaultController":0.003,"DatabaseTest::testDatabaseConnection":0.062,"MigrationTest::testCreateTemporaryTable":0.618,"UserSeederTest::testAdminUserExists":0.084}}
