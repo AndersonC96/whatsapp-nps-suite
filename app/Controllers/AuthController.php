@@ -4,8 +4,9 @@
     use Core\Database;
     class AuthController extends Controller {
         public function login() {
+            session_start();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $email = $_POST['email'] ?? '';
+                $email = trim($_POST['email'] ?? '');
                 $senha = $_POST['senha'] ?? '';
                 $db = Database::connect();
                 $stmt = $db->prepare("SELECT * FROM users WHERE email = ? AND ativo = 1 LIMIT 1");
@@ -26,5 +27,12 @@
                 }
             }
             $this->view('auth/login');
+        }
+        public function logout() {
+            session_start();
+            session_unset();
+            session_destroy();
+            header('Location: /auth/login');
+            exit;
         }
     }
