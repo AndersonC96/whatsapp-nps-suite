@@ -1,25 +1,29 @@
 <?php
     namespace Core;
     class Router {
+        protected array $routes;
+        public function __construct() {
+            $this->routes = require __DIR__ . '/../routes/web.php';
+        }
         public function dispatch() {
-            // Captura a URI sem considerar diretórios
+            $method = $_SERVER['REQUEST_METHOD'];
             $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-            $uri = trim($uri, '/');
-            $segments = explode('/', $uri);
-            $controllerName = !empty($segments[0]) ? ucfirst($segments[0]) . 'Controller' : 'HomeController';
-            $method = $segments[1] ?? 'index';
-            $controllerClass = 'App\\Controllers\\' . $controllerName;
-            if (class_exists($controllerClass)) {
-                $controller = new $controllerClass();
-                if (method_exists($controller, $method)) {
-                    call_user_func_array([$controller, $method], array_slice($segments, 2));
-                } else {
-                    http_response_code(404);
-                    echo "Método '$method' não encontrado em $controllerName.";
-                }
-            } else {
+            $base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+            $route = trim(str_replace($base, '', $uri), '/');
+            $action = $this->routes[$method][$route] ?? null;
+            if (!$action) {
                 http_response_code(404);
-                echo "Controller '$controllerName' não encontrado.";
+                echo "Rota '$route' [$method] não encontrada.";
+                return;
             }
+            [$controllerName, $methodName] = explode('@', $action);
+            $controllerClass = 'App\\Controllers\\' . $controllerName;
+            if (!class_exists($controllerClass) || !method_exists($controllerClass, $methodName)) {
+                http_response_code(500);
+                echo "Erro: controlador ou método inválido: $controllerClass@$methodName";
+                return;
+            }
+            $controller = new $controllerClass();
+            call_user_func([$controller, $methodName]);
         }
     }
